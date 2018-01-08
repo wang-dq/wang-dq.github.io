@@ -40,12 +40,14 @@ class topuTree {
     }
   }
   update(obj) {
-    if (obj.id) {
-      let cl = new Circle(obj);
-      data.map((item, index) => {
-        return item.id == id ? cl : item;
+    if (obj && obj.id) {
+      let clData = new Circle(obj);
+      data.map(item => {
+        if (item.id == obj.id) {
+          this.draw(document.getElementById(obj.id), clData);
+          return clData;
+        }
       });
-      this.draw();
     }
   }
   draw(circle, clData) {
