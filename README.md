@@ -22,6 +22,7 @@ strokeWidth:描边 宽度 默认 ‘2px’</br>
 #### 增删除节点 delete(id)
 
 tuopuTree.delete(id){}
+根据 id 删除相应节点，如果不传，则删除所有节点
 
 #### 修改节点 update
 
