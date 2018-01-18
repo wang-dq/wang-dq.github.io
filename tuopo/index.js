@@ -1,64 +1,53 @@
-import Circle from "./circle";
-
+import ElementModel from "../models/element_model";
+import nodeController from "../controllers/node_controller";
+import lineController from "../controllers/line_controller";
 class topuTree {
-  create(obj) {
-    data.map(dataItem => {
-      if (obj && obj.id == dataItem.id) {
-        val.id = "";
+  init(data) {
+    container.innerHTML = "";
+    graphData = JSON.parse(data).map(item => {
+      return new ElementModel(item);
+    });
+
+    graphData.map(item => {
+      let { type } = item;
+      if (item.type == "node") {
+        container.appendChild(nodeController(item));
+      } else if (type == "line") {
+        container.appendChild(lineController(item));
       }
     });
-    let clData = new Circle(obj);
-    data.push(clData);
-    let circle = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "circle"
-    );
-    g.appendChild(this.draw(circle, clData));
   }
-  query(id) {
-    if (id) {
-      for (let item of data) {
-        if (item.id == id) {
-          return item;
-        }
+  move(id, axis) {
+    let { x, y } = axis;
+    let element = graphData.find(item => {
+      item.id == id;
+    });
+    graphData.map(item => {
+      if (item.id == id && item.type == "node") {
+        item.attribute.x = x;
+        item.attribute.y = y;
+        nodeController(item);
+        let prevElement = graphData.find(prev => {
+          return prev.id == item.prevs;
+        });
+        prevElement && lineController(prevElement);
+        item.nexts.map(id => {
+          let nextElement = graphData.find(item => {
+            return item.id == id;
+          });
+          nextElement && lineController(nextElement);
+        });
       }
-      return null;
-    }
-    return data;
+    });
   }
-  delete(id) {
+  getInfo(id) {
     if (id) {
-      data.map((item, index) => {
-        if (item.id == id) {
-          data.splice(index, 1);
-          g.removeChild(document.getElementById(id));
-        }
+      return graphData.find(item => {
+        return item.id == id;
       });
     } else {
-      data = [];
-      g.innerHTML = "";
+      return graphData;
     }
-  }
-  update(obj) {
-    if (obj && obj.id) {
-      let clData = new Circle(obj);
-      data.map(item => {
-        if (item.id == obj.id) {
-          this.draw(document.getElementById(obj.id), clData);
-          return clData;
-        }
-      });
-    }
-  }
-  draw(circle, clData) {
-    circle.id = clData.id;
-    circle.setAttribute("cx", clData.cx);
-    circle.setAttribute("cy", clData.cy);
-    circle.setAttribute("r", clData.r);
-    circle.setAttribute("fill", clData.fill);
-    circle.setAttribute("stroke", clData.stroke);
-    circle.setAttribute("strokeWidth", clData.strokeWidth);
-    return circle;
   }
 }
 export default topuTree;
