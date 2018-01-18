@@ -42,11 +42,12 @@ class topuTree {
   }
   getInfo(id) {
     if (id) {
-      return graphData.find(item => {
+      let data = graphData.find(item => {
         return item.id == id;
       });
+      return data ? JSON.stringify(data) : null;
     } else {
-      return graphData;
+      return JSON.stringify(graphData);
     }
   }
 }
