@@ -137,8 +137,8 @@ document.getElementById("sure").onclick = () => {
   if (selectData.type == "node") {
     let radius = parseFloat(document.getElementById("radius").value);
     let { width, height } = selectData.attribute;
-    width = radius ? 2 * radius : width;
-    height = radius ? 2 * radius : height;
+    selectData.attribute.width = radius ? 2 * radius : width;
+    selectData.attribute.height = radius ? 2 * radius : height;
     tuopuTree.move(selectData.id, {
       x: selectData.attribute.x,
       y: selectData.attribute.y
