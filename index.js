@@ -1,12 +1,10 @@
 import "babel-polyfill";
 import TuopuIndex from "./tuopo/index.js";
-
 window.graphData = [];
 window.tuopuTree = new TuopuIndex();
 window.container = document.getElementById("container");
 window.svg = document.getElementById("svg");
 window.attributeModal = document.getElementById("attributes");
-
 var svgX = 0,
   svgY = 0,
   scale = 1,
