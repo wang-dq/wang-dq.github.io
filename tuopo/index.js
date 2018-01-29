@@ -17,8 +17,15 @@ class topuTree {
     });
   }
   addNode(prevNode) {
-    let lineElement = new ElementModel({ type: "line", prevs: prevNode.id });
-    let element = new ElementModel({ type: "node", prevs: lineElement.id });
+    let lineData = { type: "line", prevs: prevNode.id };
+    let lineElement = new ElementModel(lineData);
+    let nodeData = {
+      type: "node",
+      prevs: lineElement.id,
+      attribute: { x: prevNode.attribute.x, y: prevNode.attribute.y + 120 }
+    };
+    let element = new ElementModel(nodeData);
+    prevNode.nexts.push(lineElement.id);
     lineElement.nexts = [element.id];
     graphData.push(element, lineElement);
     container.appendChild(nodeController(element));
