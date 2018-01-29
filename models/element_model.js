@@ -9,7 +9,9 @@ class ElementModel {
     this.prevs = prevs || "";
     this.nexts = nexts || [];
     this.text = text || "";
-    this.attribute = attribute ? new AttributeModel(attribute) : null;
+    this.attribute = attribute
+      ? new AttributeModel(attribute)
+      : new AttributeModel({});
   }
 }
 

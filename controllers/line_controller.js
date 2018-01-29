@@ -35,7 +35,7 @@ function lineController(item) {
   }
 
   const textX = (endX - startX) / 2;
-  const textY = (endY - startY) / 2 - 12;
+  const textY = (endY - startY) / 2;
 
   let g = document.getElementById(id);
   if (g) {
@@ -44,7 +44,7 @@ function lineController(item) {
     g = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.id = id;
   }
-
+  g.setAttribute("class", "line-element element");
   g.setAttribute("transform", `translate(${startX},${startY})`);
   let line = lineView(endX - startX, endY - startY);
   g.appendChild(line);

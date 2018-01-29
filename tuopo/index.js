@@ -17,11 +17,19 @@ class topuTree {
       }
     });
   }
+  addNode(prevNode) {
+    let lineElement = new ElementModel({ type: "line", prevs: prevNode.id });
+    let element = new ElementModel({ type: "node", prevs: lineElement.id });
+    lineElement.nexts = [element.id];
+    graphData.push(element, lineElement);
+    container.appendChild(nodeController(element));
+    container.appendChild(lineController(lineElement));
+  }
+  updateLine(lineElement) {
+    lineController(lineElement);
+  }
   move(id, axis) {
     let { x, y } = axis;
-    let element = graphData.find(item => {
-      item.id == id;
-    });
     graphData.map(item => {
       if (item.id == id && item.type == "node") {
         item.attribute.x = x;

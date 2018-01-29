@@ -1,0 +1,63 @@
+body {
+  font-size: 12px;
+  font-family: "Microsoft yahei", "rial";
+}
+
+svg {
+  margin: 0px auto;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.element {
+  cursor: pointer;
+}
+
+.section {
+  position: relative;
+}
+
+.attributes {
+  position: absolute;
+  top: 50px;
+  left: 450px;
+  width: 300px;
+  background: #eee;
+  display: none;
+}
+
+.attributes > i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.attributes p {
+  line-height: 25px;
+  text-align: center;
+}
+.attributes h3 {
+  padding-left: 30px;
+}
+.attributes label {
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+}
+.nodes,
+.lines {
+  display: none;
+}
+.attributes.show {
+  display: block;
+}
+.node .nodes,
+.line .lines {
+  display: block;
+}
+button {
+  cursor: pointer;
+}
+.attributes p button.nodes {
+  display: inline-block;
+}
