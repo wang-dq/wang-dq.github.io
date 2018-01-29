@@ -3,14 +3,12 @@ import textView from "../views/text_view";
 
 function lineController(item) {
   let { id, prevs, nexts, attribute, text } = item;
-
   let prev = graphData.find(item => {
     return item.id == prevs;
   });
   let next = graphData.find(item => {
     return item.id == nexts[0];
   });
-
   let prevX = prev.attribute.x;
   let prevY = prev.attribute.y;
   let prevR = prev.attribute.width / 2;
@@ -33,10 +31,8 @@ function lineController(item) {
     endX = nextX - Math.sin(angle) * (nextR + 10);
     endY = nextY - Math.cos(angle) * (nextR + 10);
   }
-
   const textX = (endX - startX) / 2;
   const textY = (endY - startY) / 2;
-
   let g = document.getElementById(id);
   if (g) {
     g.innerHTML = "";

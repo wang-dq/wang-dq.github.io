@@ -7,7 +7,6 @@ class topuTree {
     graphData = JSON.parse(data).map(item => {
       return new ElementModel(item);
     });
-
     graphData.map(item => {
       let { type } = item;
       if (item.type == "node") {
